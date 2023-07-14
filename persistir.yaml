@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: meu-app-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: meu-app-storage
+  hostPath:
+    path: /data/meu-app
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: meu-app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: meu-app-storage
